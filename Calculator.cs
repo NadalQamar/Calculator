@@ -107,16 +107,7 @@ namespace Calculator
             if (num1 == 0)
             {
                 Int32.TryParse(DisplayBox.Text, out num1);
-                DisplayBox.ResetText();
-            }
-            else if (num1 > 0 && num2 == 0)
-            {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                DisplayBox.ResetText();
-            }
-            else
-            {
-                DisplayBox.Text = "No more numbers";
+                DisplayBox.Clear();
             }
 
             if(flag == 0)
@@ -126,6 +117,7 @@ namespace Calculator
             else
             {
                 DisplayBox.Text = "no more flag input";
+
             }
 
         }
@@ -136,15 +128,6 @@ namespace Calculator
             {
                 Int32.TryParse(DisplayBox.Text, out num1);
                 DisplayBox.ResetText();
-            }
-            else if (num1 > 0 && num2 == 0)
-            {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                DisplayBox.ResetText();
-            }
-            else
-            {
-                DisplayBox.Text = "No more numbers";
             }
 
             if (flag == 0)
@@ -164,15 +147,6 @@ namespace Calculator
                 Int32.TryParse(DisplayBox.Text, out num1);
                 DisplayBox.ResetText();
             }
-            else if (num1 > 0 && num2 == 0)
-            {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                DisplayBox.ResetText();
-            }
-            else
-            {
-                DisplayBox.Text = "No more numbers";
-            }
 
             if (flag == 0)
             {
@@ -191,15 +165,6 @@ namespace Calculator
                 Int32.TryParse(DisplayBox.Text, out num1);
                 DisplayBox.ResetText();
             }
-            else if (num1 > 0 && num2 == 0)
-            {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                DisplayBox.ResetText();
-            }
-            else
-            {
-                DisplayBox.Text = "No more numbers";
-            }
 
             if (flag == 0)
             {
@@ -216,22 +181,26 @@ namespace Calculator
             
             if(flag == 1)
             {
+                Int32.TryParse(DisplayBox.Text, out num2);
                 result = (num1 + num2).ToString();
                 DisplayBox.Text = result;
             }
             else if(flag == 2)
             {
+                Int32.TryParse(DisplayBox.Text, out num2);
                 result = (num1 - num2).ToString();
                 DisplayBox.Text = result;
             }
             else if(flag == 3)
             {
+                Int32.TryParse(DisplayBox.Text, out num2);
                 result = (num1 * num2).ToString();
                 DisplayBox.Text = result;
 
             }
             else if(flag == 4)
             {
+                Int32.TryParse(DisplayBox.Text, out num2);
                 result = (num1 / num2).ToString();
                 DisplayBox.Text = result;
 
