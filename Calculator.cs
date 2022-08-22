@@ -12,10 +12,15 @@ namespace Calculator
 {
     public partial class Calculator : Form
     {
-        int num1 = 0;
-        int num2 = 0;
-        string NUM;
-        int flag = 0;
+        //first number
+        decimal decNum1;
+        //second number
+        decimal decNum2;
+        //decimal can only be used once
+        bool decimalFlag = false;
+        //additional variables
+        string INPUT;
+        int operatorFlag = 0;
         string result;
 
         public Calculator()
@@ -23,100 +28,136 @@ namespace Calculator
             InitializeComponent();
         }
 
-
-
         private void Calculator_Load(object sender, EventArgs e)
         {
 
         }
+        //Methods
+        //changes what is displayed(which is a string) into a decimal
+        private decimal DecConvert(string str, bool decFlag)
+        {
+            //variables
+            int num1 = 0;
+            int num2 = 0;
+            int num = 0;
+            int precision = 0;
+            decimal factor = 0;
+
+            //Change the string to a decimal
+            if (decFlag == true)
+            {
+                string[] NUM = str.Split('.');
+                Int32.TryParse(NUM[0], out num1);
+                Int32.TryParse(NUM[1], out num2);
+                precision = num2.ToString().Length;
+                factor = (decimal)Math.Pow(10, -1 * precision);
+                Int32.TryParse(num1.ToString() + num2.ToString(), out num);
+                return num * factor;
+            }
+            //if there is no decimal
+            else
+            {
+                Int32.TryParse(str, out num);
+                return Convert.ToDecimal(num);
+            }
+        }
+        //good housekeeping (I guess)
+        private void ClearDisplayResetDecimalFlag()
+        {
+            DisplayBox.Clear();
+            decimalFlag = false;
+        }
         //Numbers
         private void Zero_Click(object sender, EventArgs e)
         {
-            NUM = "0";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
-
+            INPUT = "0";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void One_Click(object sender, EventArgs e)
         {
-            NUM = "1";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
-
+            INPUT = "1";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Two_Click(object sender, EventArgs e)
         {
-            NUM = "2";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "2";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Three_Click(object sender, EventArgs e)
         {
-            NUM = "3";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "3";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Four_Click(object sender, EventArgs e)
         {
-            NUM = "4";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "4";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Five_Click(object sender, EventArgs e)
         {
-            NUM = "5";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "5";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Six_Click(object sender, EventArgs e)
         {
-            NUM = "6";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "6";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Seven_Click(object sender, EventArgs e)
         {
-            NUM = "7";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "7";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Eight_Click(object sender, EventArgs e)
         {
-            NUM = "8";
-
-            DisplayBox.Text = DisplayBox.Text + NUM;
+            INPUT = "8";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
         }
 
         private void Nine_Click(object sender, EventArgs e)
         {
-            NUM = "9";
+            INPUT = "9";
+            DisplayBox.Text = DisplayBox.Text + INPUT;
+        }
+        //Decimal
+        private void Decimal_Click(object sender, EventArgs e)
+        {
+            if(decimalFlag != true)
+            {
+                INPUT = ".";
+                decimalFlag = true;
+                DisplayBox.Text = DisplayBox.Text + INPUT;
+            }else
+            {
+                DisplayBox.Text = "No more Decimals";
+            }
 
-            DisplayBox.Text = DisplayBox.Text + NUM;
         }
         //Operations
         private void Add_Click(object sender, EventArgs e)
         {
-            if (num1 == 0)
+            //First Number assignment
+            if (decNum1 == 0)
             {
-                Int32.TryParse(DisplayBox.Text, out num1);
-                DisplayBox.Clear();
+                decNum1 = DecConvert(DisplayBox.Text, decimalFlag);
+                ClearDisplayResetDecimalFlag();
             }
-
-            if(flag == 0)
+            //Operator Assignment
+            if(operatorFlag == 0)
             {
-                flag = 1;
+                operatorFlag = 1;
             }
             else
             {
-                DisplayBox.Text = "no more flag input";
+                DisplayBox.Text = "no more operators input";
 
             }
 
@@ -124,90 +165,113 @@ namespace Calculator
 
         private void Subtract_Click(object sender, EventArgs e)
         {
-            if (num1 == 0)
+            //First Number assignment
+            if (decNum1 == 0)
             {
-                Int32.TryParse(DisplayBox.Text, out num1);
-                DisplayBox.ResetText();
+                decNum1 = DecConvert(DisplayBox.Text, decimalFlag);
+                ClearDisplayResetDecimalFlag();
             }
-
-            if (flag == 0)
+            //Operator Assignment
+            if (operatorFlag == 0)
             {
-                flag = 2;
+                operatorFlag = 2;
             }
             else
             {
-                DisplayBox.Text = "no more flag input";
+                DisplayBox.Text = "no more operators input";
             }
         }
 
         private void Multiply_Click(object sender, EventArgs e)
         {
-            if (num1 == 0)
+            //First Number assignment
+            if (decNum1 == 0)
             {
-                Int32.TryParse(DisplayBox.Text, out num1);
-                DisplayBox.ResetText();
+                decNum1 = DecConvert(DisplayBox.Text, decimalFlag);
+                ClearDisplayResetDecimalFlag();
             }
-
-            if (flag == 0)
+            //Operator Assignment
+            if (operatorFlag == 0)
             {
-                flag = 3;
+                operatorFlag = 3;
             }
             else
             {
-                DisplayBox.Text = "no more flag input";
+                DisplayBox.Text = "no more operators input";
             }
         }
 
         private void Divide_Click(object sender, EventArgs e)
         {
-            if (num1 == 0)
+            //First Number assignment
+            if (decNum1 == 0)
             {
-                Int32.TryParse(DisplayBox.Text, out num1);
-                DisplayBox.ResetText();
+                decNum1 = DecConvert(DisplayBox.Text, decimalFlag);
+                ClearDisplayResetDecimalFlag();
             }
-
-            if (flag == 0)
+            //Operator Assignment
+            if (operatorFlag == 0)
             {
-                flag = 4;
+                operatorFlag = 4;
             }
             else
             {
-                DisplayBox.Text = "no more flag input";
+                DisplayBox.Text = "no more operators input";
             }
         }
         //Result
         private void EqualsToEnter_Click(object sender, EventArgs e)
         {
             
-            if(flag == 1)
+            if(operatorFlag == 1)
             {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                result = (num1 + num2).ToString();
+                //Second Number Assignment
+                if (decNum2 == 0)
+                {
+                    decNum2 = DecConvert(DisplayBox.Text, decimalFlag);
+                    ClearDisplayResetDecimalFlag();
+                }
+                result = (decNum1 + decNum2).ToString();
                 DisplayBox.Text = result;
             }
-            else if(flag == 2)
+            else if(operatorFlag == 2)
             {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                result = (num1 - num2).ToString();
+                //Second Number Assignment
+                if (decNum2 == 0)
+                {
+                    decNum2 = DecConvert(DisplayBox.Text, decimalFlag);
+                    ClearDisplayResetDecimalFlag();
+                }
+                result = (decNum1 - decNum2).ToString();
                 DisplayBox.Text = result;
             }
-            else if(flag == 3)
+            else if(operatorFlag == 3)
             {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                result = (num1 * num2).ToString();
+                //Second Number Assignment
+                if (decNum2 == 0)
+                {
+                    decNum2 = DecConvert(DisplayBox.Text, decimalFlag);
+                    ClearDisplayResetDecimalFlag();
+                }
+                result = (decNum1 * decNum2).ToString();
                 DisplayBox.Text = result;
 
             }
-            else if(flag == 4)
+            else if(operatorFlag == 4)
             {
-                Int32.TryParse(DisplayBox.Text, out num2);
-                result = (num1 / num2).ToString();
+                //Second Number Assignment
+                if (decNum2 == 0)
+                {
+                    decNum2 = DecConvert(DisplayBox.Text, decimalFlag);
+                    ClearDisplayResetDecimalFlag();
+                }
+                result = (decNum1 / decNum2).ToString();
                 DisplayBox.Text = result;
 
             }
-            else if(num1 > 0)
+            else if(decNum1 > 0)
             {
-                result = num1.ToString();
+                result = decNum1.ToString();
                 DisplayBox.Text = result;
 
             }
@@ -215,18 +279,21 @@ namespace Calculator
             {
                 DisplayBox.Text = "There is nothing to operate on!";
             }
-            flag = 0;
-            num1 = 0;
-            num2 = 0;
+            operatorFlag = 0;
+            decNum1 = 0;
+            decNum2 = 0;
 
         }
         //Clear
         private void Clear_Click(object sender, EventArgs e)
         {
             DisplayBox.Text = "";
-            flag = 0;
-            num1 = 0;
-            num2 = 0;
+            operatorFlag = 0;
+            decimalFlag = false;
+            decNum1 = 0;
+            decNum2 = 0;
         }
+
     }
+
 }

@@ -38,6 +38,7 @@
             this.Seven = new System.Windows.Forms.Button();
             this.Eight = new System.Windows.Forms.Button();
             this.Nine = new System.Windows.Forms.Button();
+            this.Decimal = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.Subtract = new System.Windows.Forms.Button();
             this.Multiply = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.EqualsToEnter = new System.Windows.Forms.Button();
             this.DisplayBox = new System.Windows.Forms.TextBox();
             this.Clear = new System.Windows.Forms.Button();
+
             this.SuspendLayout();
             // 
             // Zero
@@ -147,6 +149,16 @@
             this.Nine.UseVisualStyleBackColor = true;
             this.Nine.Click += new System.EventHandler(this.Nine_Click);
             // 
+            // Decimal
+            // 
+            this.Decimal.Location = new System.Drawing.Point(174, 156);
+            this.Decimal.Name = "Decimal";
+            this.Decimal.Size = new System.Drawing.Size(75, 23);
+            this.Decimal.TabIndex = 0;
+            this.Decimal.Text = ".\\Decimal";
+            this.Decimal.UseVisualStyleBackColor = true;
+            this.Decimal.Click += new System.EventHandler(this.Decimal_Click);
+            // 
             // Add
             // 
             this.Add.Location = new System.Drawing.Point(256, 69);
@@ -206,13 +218,14 @@
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(174, 156);
+            this.Clear.Location = new System.Drawing.Point(12, 40);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(75, 23);
             this.Clear.TabIndex = 0;
             this.Clear.Text = "Clear";
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.Click += new System.EventHandler(this.Clear_Click);
+
             // 
             // Calculator
             // 
@@ -223,6 +236,7 @@
             this.Controls.Add(this.Add);
             this.Controls.Add(this.EqualsToEnter);
             this.Controls.Add(this.Clear);
+            this.Controls.Add(this.Decimal);
             this.Controls.Add(this.Three);
             this.Controls.Add(this.Six);
             this.Controls.Add(this.Nine);
@@ -257,6 +271,7 @@
         private System.Windows.Forms.Button Seven;
         private System.Windows.Forms.Button Eight;
         private System.Windows.Forms.Button Nine;
+        private System.Windows.Forms.Button Decimal;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button Subtract;
         private System.Windows.Forms.Button Multiply;
@@ -264,5 +279,6 @@
         private System.Windows.Forms.Button EqualsToEnter;
         private System.Windows.Forms.TextBox DisplayBox;
         private System.Windows.Forms.Button Clear;
+
     }
 }
