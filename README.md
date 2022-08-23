@@ -13,5 +13,5 @@ Version: 0.11<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fixed the Calculator to Work.
 
 Version: 0.12<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Decimals.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Added Decimals.<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Improved code of Calculator.cs.
